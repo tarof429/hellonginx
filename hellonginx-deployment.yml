@@ -1,0 +1,23 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  # Unique key of the Deployment instance
+  name: hellonginx-deployment
+spec:
+  # Create only one pod
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hellonginx-label
+  template:
+    metadata:
+      labels:
+        # Apply this label to pods and default
+        # the Deployment label selector to this value
+        app: hellonginx-label
+    spec:
+      containers:
+      - name: hellonginx
+        # Run this image
+        image: hellonginx:v1.1
